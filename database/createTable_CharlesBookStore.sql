@@ -2,12 +2,12 @@
 CREATE TABLE book_category (
   categoryID int(20) NOT NULL AUTO_INCREMENT,
   categoryName varchar(100) NOT NULL,
-  categoryParent int(20) DEFAULT NULL
+  categoryParent int(20) DEFAULT NULL,
   PRIMARY KEY (categoryID)
 );
 
 CREATE TABLE books (
-  ISBN varchar(25) NOT NULL PRIMARY KEY,
+  ISBN varchar(25) NOT NULL,
   bookTitle varchar(100) DEFAULT NULL,
   authors varchar(250) DEFAULT NULL,
   publisher varchar(100) DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE books (
   bookPrice double DEFAULT NULL,
   imageLocation varchar(250) DEFAULT NULL,
   bookDescription varchar(4000) DEFAULT NULL,
-  PRIMARY KEY (ISBN)
+  PRIMARY KEY (ISBN),
   KEY cat_id (cat_id),
   FULLTEXT KEY Title (bookTitle,bookDescription),
   FULLTEXT KEY Title_2 (bookTitle,bookDescription),
@@ -36,8 +36,8 @@ CREATE TABLE user (
   totalNumberOfPurchases int(10) DEFAULT '0',
   monthsSinceFirstPurchase int(10) DEFAULT '0',
   firstName varchar(100) DEFAULT NULL,
-  lastName varchar(100) DEFAULT NULL
-  password varchar(128) DEFAULT NULL,
+  lastName varchar(100) DEFAULT NULL,
+  userPass varchar(128) DEFAULT NULL,
   PRIMARY KEY(userID)
 );
 
@@ -51,11 +51,11 @@ CREATE TABLE admin (
 CREATE TABLE orders (
   order_id int(10) NOT NULL AUTO_INCREMENT,
   timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  userLogin_id char(20) DEFAULT NULL,
+  login_id int(20) DEFAULT NULL,
   Status enum('Order In transit','Processing Payment','Order Delivered to Customer','Order In Warehouse') DEFAULT NULL,
   PRIMARY KEY (order_id),
-  KEY login_id (userLogin_id),
-  CONSTRAINT orders_ibfk_1 FOREIGN KEY (userLogin_id) REFERENCES user (userID) ON DELETE CASCADE
+  KEY login_id (login_id),
+  CONSTRAINT orders_ibfk_1 FOREIGN KEY (login_id) REFERENCES user (userID) ON DELETE CASCADE
 );
 
 CREATE TABLE book_order (
@@ -83,7 +83,7 @@ CREATE TABLE order_detail (
 
 CREATE TABLE cart (
   cart_id varchar(10) NOT NULL,
-  user_id char(20) NOT NULL,
+  user_id int(20) NOT NULL,
   total double DEFAULT '0',
   count int(11) NOT NULL DEFAULT '0',
   item_id char(20) DEFAULT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE feedback (
-  user_id char(20) NOT NULL,
+  user_id int(20) NOT NULL,
   ISBN char(25) NOT NULL,
   Score int(11) DEFAULT NULL,
   Date date DEFAULT NULL,
@@ -106,8 +106,8 @@ CREATE TABLE feedback (
 
 CREATE TABLE rating (
   Score int(11) DEFAULT NULL,
-  Rater_id char(10) NOT NULL,
-  Ratee_id char(10) NOT NULL,
+  Rater_id int(10) NOT NULL,
+  Ratee_id int(10) NOT NULL,
   ISBN char(14) NOT NULL,
   comments varchar(200) DEFAULT NULL,
   PRIMARY KEY (ISBN,Rater_id,Ratee_id),
