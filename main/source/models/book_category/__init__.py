@@ -1,4 +1,8 @@
-from main.source.models.trie import tree
+'''
+@author: Muhammad Ibrahim
+'''
+
+from main.source.models.tree import tree
 
 class Category(object):
 
