@@ -9,7 +9,7 @@ import db_env
 
 
 
-class Singleton(object):
+class SingletonDB(object):
     _instance = None
     connection = None
 
