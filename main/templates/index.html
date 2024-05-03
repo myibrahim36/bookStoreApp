@@ -9,23 +9,27 @@
 	<script src="static/lib/jquery-2.2.2.js"></script>
 	<script src="static/lib/angular.min.js"></script>
 	<script src="static/lib/angular-route.min.js"></script>
-	
-	<script src="static/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="static/lib/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-	
+	<script src="static/lib/angular-sanitize.js"></script>
+	<script src="static/lib/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="static/lib/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<script src="static/lib/ui-bootstrap-tpls-1.1.2.min.js"></script>
 	
 	
+	<!------------------------ Models -------------------------->
+	<script src="static/js/model/books.js"></script>
 
+	<script src="static/js/app.js"></script>
+
+	<script src="static/js/routes.js"></script>
 
 </head>
 <body  ng-app="bookStore">
 	<div id="book-store-container" class="toggle-sidebar" >
 		<div id="page-content" class="page-content-wrapper">
-			<div></div>
+			<div ng-include src="'/static/views/header.html'"></div>
 			
 		    <div class="container-fluid">
-		        <div ng-view><h1>HELLO WORLD!</h1></div>
+		        <div ng-view><h1></h1></div>
 		    </div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 
 from flask import jsonify
-#from ..models.core.business.books.BookRepository import BookRepository
+
 from data_access import DataAccessor
 
 class book_dao(DataAccessor):
@@ -8,6 +8,16 @@ class book_dao(DataAccessor):
     def __init__(self):
         
         super(book_dao,self).__init__()
+
+    def get_some_books(self):
+        try:
+            query =("select isbn, title, authors, publisher, available_copies, price,image_loc "
+                    "from books "
+                    )
+            book_list = super(book_dao,self).read(query= query)
+            return book_list
+        except Exception as e:
+            print(e,"get_some_books")
        
 
 """     
